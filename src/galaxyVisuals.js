@@ -170,6 +170,7 @@ export function buildGalaxyNode(g, pickables) {
 
   const userData = {
     isCosmic: true,
+    id: g.id,
     isDrill: !!(g.drillLevel || g.drillPath),
     name: g.name,
     type: g.type,

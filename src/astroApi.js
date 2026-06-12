@@ -4,12 +4,23 @@ const NASA_KEY = 'DEMO_KEY';
 const CACHE_KEY = 'flyuniverse.nasa_apod';
 const CACHE_MS = 12 * 60 * 60 * 1000; // 12 h
 
+function apodPageUrl(dateStr) {
+  // API date "YYYY-MM-DD" → apod.nasa.gov/apod/apYYMMDD.html
+  const compact = dateStr.replace(/-/g, '').slice(2);
+  return `https://apod.nasa.gov/apod/ap${compact}.html`;
+}
+
+/** NASA APOD — only live API in this app. Cached 12 h per device. */
 export async function fetchDailySpaceFact() {
   try {
     const cached = localStorage.getItem(CACHE_KEY);
     if (cached) {
-      const { ts, text } = JSON.parse(cached);
-      if (Date.now() - ts < CACHE_MS) return text;
+      const parsed = JSON.parse(cached);
+      const { ts, payload, text } = parsed;
+      if (Date.now() - ts < CACHE_MS) {
+        if (payload?.title) return payload;
+        if (text) return { title: 'NASA APOD', snippet: text, pageUrl: 'https://apod.nasa.gov/apod/astropix.html', apiUrl: 'https://api.nasa.gov/' };
+      }
     }
   } catch { /* ignore */ }
 
@@ -19,13 +30,15 @@ export async function fetchDailySpaceFact() {
     );
     if (!res.ok) throw new Error(`NASA APOD ${res.status}`);
     const data = await res.json();
-    const text = data.title
-      ? `NASA PIC OF THE DAY: ${data.title}. ${(data.explanation || '').slice(0, 140)}…`
-      : null;
-    if (text) {
-      localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), text }));
-    }
-    return text;
+    if (!data.title) return null;
+    const payload = {
+      title: data.title,
+      snippet: `${(data.explanation || '').slice(0, 140)}…`,
+      pageUrl: apodPageUrl(data.date),
+      apiUrl: 'https://api.nasa.gov/',
+    };
+    localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), payload }));
+    return payload;
   } catch {
     return null;
   }

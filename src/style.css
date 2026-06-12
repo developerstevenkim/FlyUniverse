@@ -101,7 +101,11 @@ canvas#space {
   font-size: 22px;
   line-height: 1.25;
 }
-.guide-msg { margin-bottom: 10px; }
+.guide-msg {
+  margin-bottom: 10px;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
 .guide-msg--user { color: var(--neon-cyan); }
 .guide-msg--bot { color: var(--ink); }
 #guide-chips {
@@ -220,7 +224,7 @@ canvas#space {
   transition: opacity 0.3s;
   pointer-events: none;
 }
-#info-card.show { opacity: 1; }
+#info-card.show { opacity: 1; pointer-events: auto; }
 
 #info-head {
   font-family: 'Press Start 2P', monospace;
@@ -239,8 +243,29 @@ canvas#space {
   margin-top: 10px;
   font-family: 'Press Start 2P', monospace;
   font-size: clamp(14px, 2.2vw, 19px);
-  color: var(--neon-yellow);
   text-transform: uppercase;
+}
+#info-name a {
+  color: var(--neon-yellow);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+#info-name a:hover { color: var(--neon-green); }
+#info-source {
+  margin-top: 12px;
+  font-size: clamp(14px, 1.8vw, 17px);
+  line-height: 1.35;
+  color: #7a9a88;
+}
+#info-source a {
+  color: var(--neon-cyan);
+  text-decoration: underline;
+}
+#caption a { color: var(--neon-cyan); text-decoration: underline; }
+#planet-banner a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 #info-type {
   font-size: clamp(18px, 2.4vw, 22px);

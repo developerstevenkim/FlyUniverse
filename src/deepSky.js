@@ -7,7 +7,7 @@ const ALL_CONSTELLATIONS = [...CONSTELLATIONS, ...MORE_CONSTELLATIONS];
 import { createStarLabelTexture } from './planets.js';
 
 const SKY_RADIUS = 780;
-const LINE_PICK_RADIUS = 3.8;
+const LINE_PICK_RADIUS = 6.2;
 
 function makeStarThumb(colorHex) {
   const c = document.createElement('canvas');
@@ -24,6 +24,23 @@ function makeStarThumb(colorHex) {
   return c.toDataURL();
 }
 
+function makeConstellationThumb() {
+  const c = document.createElement('canvas');
+  c.width = 64; c.height = 32;
+  const g = c.getContext('2d');
+  g.fillStyle = '#000';
+  g.fillRect(0, 0, 64, 32);
+  g.strokeStyle = '#59ff7e';
+  g.lineWidth = 3;
+  g.beginPath();
+  g.moveTo(8, 22);
+  g.lineTo(28, 10);
+  g.lineTo(48, 18);
+  g.lineTo(58, 8);
+  g.stroke();
+  return c.toDataURL();
+}
+
 function makeConstellationUserData(con) {
   return {
     isDeepSky: true,
@@ -31,7 +48,7 @@ function makeConstellationUserData(con) {
     id: con.id,
     name: con.name,
     type: con.type,
-    thumb: makeStarThumb(0xff4fd2),
+    thumb: makeConstellationThumb(),
     facts: con.facts,
     story: con.story,
     ly: null,
@@ -81,7 +98,7 @@ export function buildDeepSky(scene, pickables) {
       facts: [
         `${star.ly} light-years from Earth.`,
         'A real star in our Milky Way galaxy.',
-        'Part of a constellation — tap the green lines for the full story!',
+        'Part of a constellation — tap the green lines between stars for the myth!',
       ],
       story: `This is ${star.name}, a real star ${star.ly} light-years away! Its light left long ago and is just reaching your eyes now. That is how far away space really is.`,
     };
@@ -110,31 +127,22 @@ export function buildDeepSky(scene, pickables) {
       addLinePicker(group, sa.pos, sb.pos, conData, pickables);
     }
 
+    // Name label is display-only — constellation info comes from tapping green lines.
     const pts = con.starIds.map((id) => starMap.get(id)?.pos).filter(Boolean);
     if (!pts.length) continue;
     const center = new THREE.Vector3();
     pts.forEach((p) => center.add(p));
     center.divideScalar(pts.length);
 
-    const badge = new THREE.Mesh(
-      new THREE.SphereGeometry(11, 8, 8),
-      new THREE.MeshBasicMaterial({ color: 0xff4fd2, transparent: true, opacity: 0.22 })
-    );
-    badge.position.copy(center);
-    badge.userData = conData;
-    group.add(badge);
-    pickables.push(badge);
-
     const labelTex = new THREE.CanvasTexture(createStarLabelTexture(con.name));
     labelTex.magFilter = THREE.NearestFilter;
     const label = new THREE.Sprite(
-      new THREE.SpriteMaterial({ map: labelTex, transparent: true, depthWrite: false })
+      new THREE.SpriteMaterial({ map: labelTex, transparent: true, depthWrite: false, opacity: 0.85 })
     );
     label.scale.set(40, 15, 1);
     label.position.copy(center).add(new THREE.Vector3(0, 14, 0));
-    label.userData = { ...conData, isConstellationLabel: true };
+    label.userData = { isLabel: true };
     group.add(label);
-    pickables.push(label);
   }
 
   scene.add(group);

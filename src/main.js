@@ -1,6 +1,9 @@
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+// style.css is linked in index.html head so layout paints before this module runs
 import './style.css';
+
+document.body.classList.add('app-ready');
 import {
   PLANETS, SUN_STORY,
   createPlanetTexture, createCloudTexture, createSunTexture,
@@ -16,6 +19,7 @@ import {
   distanceEarthToBodyAUFromPositions, fetchDailySpaceFact,
 } from './astroApi.js';
 import { buildSpaceKnowledge, mountSpaceGuide } from './spaceGuide.js';
+import { getLearnMoreLinks, DATA_SOURCES } from './learnMore.js';
 
 // ---------------------------------------------------------------- renderer
 // Rendered at low resolution and upscaled with image-rendering: pixelated
@@ -228,21 +232,53 @@ const banner = document.getElementById('planet-banner');
 const caption = document.getElementById('caption');
 const infoCard = document.getElementById('info-card');
 const infoThumb = document.getElementById('info-thumb');
-const infoName = document.getElementById('info-name');
+const infoNameLink = document.getElementById('info-name-link');
 const infoType = document.getElementById('info-type');
 const infoDistance = document.getElementById('info-distance');
 const infoFacts = document.getElementById('info-facts');
 const infoHead = document.getElementById('info-head');
+const infoSource = document.getElementById('info-source');
 
 let focused = null;          // currently focused mesh
 let camTween = null;
 let captionTimer = null;
 
-function showCaption(text, ms = 6000) {
-  caption.textContent = text;
+function showCaption(text, ms = 6000, link = null) {
+  if (link?.url) {
+    caption.innerHTML = `${text} <a href="${link.url}" target="_blank" rel="noopener noreferrer">${link.label}</a>`;
+  } else {
+    caption.textContent = text;
+  }
   caption.classList.add('show');
   clearTimeout(captionTimer);
-  captionTimer = setTimeout(() => caption.classList.remove('show'), ms);
+  captionTimer = setTimeout(() => {
+    caption.classList.remove('show');
+    caption.textContent = '';
+  }, ms);
+}
+
+function setLearnMoreUI(data) {
+  const links = getLearnMoreLinks(data);
+  if (links?.page) {
+    infoNameLink.href = links.page;
+    infoNameLink.textContent = data.name;
+    banner.innerHTML = `<a href="${links.page}" target="_blank" rel="noopener noreferrer">${data.name}</a>`;
+  } else {
+    infoNameLink.removeAttribute('href');
+    infoNameLink.textContent = data.name;
+    banner.textContent = data.name;
+  }
+
+  const parts = [];
+  if (links?.source) {
+    parts.push(`<a href="${links.source.url}" target="_blank" rel="noopener noreferrer">${links.source.label}</a>`);
+  }
+  if (!data.isCosmic && !data.isConstellation && !data.isStar && data.auFromSun != null) {
+    parts.push(`<a href="${DATA_SOURCES.distances.url}" target="_blank" rel="noopener noreferrer">${DATA_SOURCES.distances.label}</a>`);
+  }
+  infoSource.innerHTML = parts.length
+    ? `Learn more: ${parts.join(' · ')}`
+    : '';
 }
 
 function distanceLabelFor(data, mesh) {
@@ -263,15 +299,14 @@ function distanceLabelFor(data, mesh) {
 }
 
 function showInfo(data, mesh) {
-  banner.textContent = data.name;
   banner.classList.add('show');
+  setLearnMoreUI(data);
   if (data.thumb) {
     infoThumb.src = data.thumb;
     infoThumb.style.display = '';
   } else {
     infoThumb.style.display = 'none';
   }
-  infoName.textContent = data.name;
   infoType.textContent = data.type;
   infoDistance.textContent = distanceLabelFor(data, mesh);
   if (data.isConstellation) infoHead.textContent = '// CONSTELLATION DATA';
@@ -289,9 +324,11 @@ function showInfo(data, mesh) {
 
 function hideInfo() {
   banner.classList.remove('show');
+  banner.textContent = '';
   infoCard.classList.remove('show');
   caption.classList.remove('show');
   infoDistance.textContent = '';
+  infoSource.textContent = '';
 }
 
 // ---------------------------------------------------------------- camera fly
@@ -431,19 +468,19 @@ canvas.addEventListener('pointerup', (e) => {
   raycaster.setFromCamera(pointer, camera);
   const hits = raycaster.intersectObjects(pickables, true).filter((h) => {
     const u = h.object.userData || {};
-    if (u.isLabel && !u.isConstellationLabel) return false;
+    if (u.isLabel) return false;
     if (u.pickViews && !u.pickViews.includes(currentView)) return false;
     return isChainVisible(h.object);
   });
   hits.sort((a, b) => {
     const ua = a.object.userData || {};
     const ub = b.object.userData || {};
-    // Stars beat constellation lines/labels when both overlap — tap star for star info, line for myth.
+    // Stars beat green line hit-zones when both overlap — tap star for star, line for constellation myth.
     if (ua.isStar && !ub.isStar) return -1;
     if (!ua.isStar && ub.isStar) return 1;
     const rank = (u) => (
       u.isDrill ? 0
-        : u.isConstellation || u.isConstellationLabel ? 1
+        : u.isConstellation ? 1
           : u.isStar ? 2
             : 3
     );
@@ -521,8 +558,16 @@ function launchApp() {
   setTimeout(async () => {
     speak(hello);
     showCaption(hello, 9000);
-    const nasa = await fetchDailySpaceFact();
-    if (nasa) setTimeout(() => showCaption(nasa, 12000), 9500);
+    const apod = await fetchDailySpaceFact();
+    if (apod) {
+      setTimeout(() => {
+        showCaption(
+          `NASA Pic of the Day: ${apod.title}. ${apod.snippet}`,
+          14000,
+          { url: apod.pageUrl, label: 'Open on NASA APOD →' },
+        );
+      }, 9500);
+    }
   }, 600);
 }
 
