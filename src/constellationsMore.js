@@ -1,0 +1,285 @@
+// Additional IAU constellations (kid-friendly subset of the 88).
+
+export const MORE_STARS = [
+  { id: 'procyon', name: 'Procyon', ra: 7.655, dec: 5.225, ly: 11.4, color: 0xfff8e8 },
+  { id: 'hamal', name: 'Hamal', ra: 2.119, dec: 23.462, ly: 66, color: 0xffaa55 },
+  { id: 'mirach', name: 'Mirach', ra: 1.614, dec: 35.62, ly: 197, color: 0xffbb88 },
+  { id: 'alpheratz', name: 'Alpheratz', ra: 0.14, dec: 29.091, ly: 97, color: 0xe8f0ff },
+  { id: 'markab', name: 'Markab', ra: 23.079, dec: 15.205, ly: 133, color: 0xf0f8ff },
+  { id: 'scheat', name: 'Scheat', ra: 23.063, dec: 28.083, ly: 196, color: 0xff8866 },
+  { id: 'algenib', name: 'Algenib', ra: 0.22, dec: 15.184, ly: 391, color: 0xe0ecff },
+  { id: 'menkar', name: 'Menkar', ra: 3.038, dec: 4.09, ly: 220, color: 0xffaa77 },
+  { id: 'elnath', name: 'Elnath', ra: 5.438, dec: 28.607, ly: 134, color: 0xdce8ff },
+  { id: 'alhena', name: 'Alhena', ra: 6.629, dec: 16.399, ly: 105, color: 0xf0f8ff },
+  { id: 'castor', name: 'Castor', ra: 7.576, dec: 31.888, ly: 51, color: 0xf0f8ff },
+  { id: 'adhara', name: 'Adhara', ra: 6.977, dec: -28.972, ly: 430, color: 0xb8d8ff },
+  { id: 'wezen', name: 'Wezen', ra: 7.14, dec: -26.393, ly: 1800, color: 0xfff0d0 },
+  { id: 'kochab', name: 'Kochab', ra: 14.845, dec: 74.155, ly: 131, color: 0xffcc88 },
+  { id: 'pherkad', name: 'Pherkad', ra: 15.345, dec: 71.834, ly: 487, color: 0xfff0d8 },
+  { id: 'rasalhague', name: 'Rasalhague', ra: 17.582, dec: 12.56, ly: 49, color: 0xf0f8ff },
+  { id: 'kornephoros', name: 'Kornephoros', ra: 16.504, dec: 21.489, ly: 139, color: 0xffdd99 },
+  { id: 'acrux', name: 'Acrux', ra: 12.443, dec: -63.099, ly: 321, color: 0xd0e8ff },
+  { id: 'gacrux', name: 'Gacrux', ra: 12.519, dec: -57.113, ly: 88, color: 0xff7744 },
+  { id: 'achernar', name: 'Achernar', ra: 1.628, dec: -57.237, ly: 139, color: 0xd8f0ff },
+  { id: 'peacock', name: 'Peacock', ra: 20.427, dec: -56.735, ly: 178, color: 0xd0e8ff },
+  { id: 'alnair', name: 'Alnair', ra: 22.137, dec: -46.961, ly: 101, color: 0xe8f4ff },
+  { id: 'sadr', name: 'Sadr', ra: 20.37, dec: 40.257, ly: 1800, color: 0xf0f8ff },
+  { id: 'tarazed', name: 'Tarazed', ra: 19.771, dec: 10.613, ly: 390, color: 0xffcc77 },
+];
+
+export const MORE_CONSTELLATIONS = [
+  {
+    id: 'taurus', name: 'Taurus', type: 'The bull',
+    starIds: ['aldebaran', 'elnath'], lines: [['aldebaran', 'elnath']],
+    extraStars: [],
+    facts: ['Home to the Pleiades star cluster.', 'Aldebaran is the bull\'s red eye.', 'Best seen in winter evenings.'],
+    story: 'This is Taurus the Bull! Its fiery eye Aldebaran glares at Orion across the sky. Taurus also hides the Pleiades — a sparkling bunch of baby stars nicknamed the Seven Sisters.',
+  },
+  {
+    id: 'gemini', name: 'Gemini', type: 'The twins',
+    starIds: ['castor', 'pollux'], lines: [['castor', 'pollux']],
+    extraStars: [],
+    facts: ['Castor and Pollux are the twin stars.', 'Pollux is an orange giant.', 'Visible in winter and spring.'],
+    story: 'Say hello to Gemini, the Twins! Two bright stars side by side — Castor and Pollux — mark the heads of twin brothers from Greek legend. They shine together like best friends in the sky.',
+  },
+  {
+    id: 'canis_major', name: 'Canis Major', type: 'The great dog',
+    starIds: ['sirius', 'adhara', 'wezen'], lines: [['sirius', 'adhara'], ['adhara', 'wezen']],
+    extraStars: [],
+    facts: ['Sirius is the brightest star in the whole night sky!', 'Follows Orion like a loyal dog.', 'Sirius means "glowing" in Greek.'],
+    story: 'Woof! Canis Major is the Great Dog, and its collar star Sirius is the brightest star we can see! It sparkles so much that ancient Egyptians used it to predict the Nile flood.',
+  },
+  {
+    id: 'canis_minor', name: 'Canis Minor', type: 'The little dog',
+    starIds: ['procyon'], lines: [],
+    extraStars: [],
+    facts: ['Only one really bright star — Procyon.', 'Means "before the dog" in Greek.', 'Rises before Sirius in some seasons.'],
+    story: 'This tiny constellation is Canis Minor, the Little Dog. Its star Procyon is small but mighty — one of the closest stars to our Sun!',
+  },
+  {
+    id: 'bootes', name: 'Boötes', type: 'The herdsman',
+    starIds: ['arcturus', 'izar', 'muphrid'], lines: [['arcturus', 'izar'], ['izar', 'muphrid']],
+    extraStars: [
+      { id: 'izar', name: 'Izar', ra: 14.749, dec: 27.074, ly: 203, color: 0xffddaa },
+      { id: 'muphrid', name: 'Muphrid', ra: 13.911, dec: 18.398, ly: 37, color: 0xfff8e8 },
+    ],
+    facts: ['Arcturus is a golden giant star.', 'Looks like a kite or ice-cream cone.', 'Follow the Big Dipper\'s arc to Arcturus!'],
+    story: 'Meet Boötes the Herdsman! Find him by following the curve of the Big Dipper\'s handle — "arc to Arcturus!" His bright star Arcturus is a golden giant much bigger than our Sun.',
+  },
+  {
+    id: 'lyra', name: 'Lyra', type: 'The lyre harp',
+    starIds: ['vega', 'sheliak', 'sulafat'], lines: [['vega', 'sheliak'], ['sheliak', 'sulafat']],
+    extraStars: [
+      { id: 'sheliak', name: 'Sheliak', ra: 18.835, dec: 33.362, ly: 960, color: 0xd0e8ff },
+      { id: 'sulafat', name: 'Sulafat', ra: 18.982, dec: 32.689, ly: 620, color: 0xe8f0ff },
+    ],
+    facts: ['Vega was the north star thousands of years ago.', 'Part of the Summer Triangle.', 'Shape looks like a small parallelogram.'],
+    story: 'This is Lyra, the Harp! Its star Vega is one of the brightest in the sky and blazes blue-white in summer. Musicians in ancient Greece imagined the gods playing a heavenly harp here.',
+  },
+  {
+    id: 'aquila', name: 'Aquila', type: 'The eagle',
+    starIds: ['altair', 'tarazed', 'alshain'], lines: [['altair', 'tarazed'], ['altair', 'alshain']],
+    extraStars: [
+      { id: 'alshain', name: 'Alshain', ra: 19.921, dec: 6.407, ly: 44, color: 0xf0f8ff },
+    ],
+    facts: ['Altair is one of the closest bright stars.', 'Part of the Summer Triangle.', 'The eagle carried Zeus\'s thunderbolts.'],
+    story: 'Aquila the Eagle soars through the summer Milky Way! Its star Altair is so close that its light reaches us in just 17 years — a cosmic neighbor.',
+  },
+  {
+    id: 'pegasus', name: 'Pegasus', type: 'The winged horse',
+    starIds: ['markab', 'scheat', 'algenib', 'alpheratz'], lines: [['markab', 'scheat'], ['scheat', 'algenib'], ['algenib', 'alpheratz'], ['alpheratz', 'markab']],
+    extraStars: [],
+    facts: ['The Great Square of Pegasus is huge!', 'Visible in autumn evenings.', 'Named after a flying horse from myth.'],
+    story: 'Look for Pegasus — the Winged Horse! A giant square of four stars forms his body. In stories, this magical horse sprang from the sea and helped heroes win battles.',
+  },
+  {
+    id: 'andromeda', name: 'Andromeda', type: 'The princess',
+    starIds: ['alpheratz', 'mirach'], lines: [['alpheratz', 'mirach']],
+    extraStars: [],
+    facts: ['Points toward the Andromeda Galaxy!', 'That galaxy is 2.5 million light-years away.', 'Chained princess in Greek myth.'],
+    story: 'This is Andromeda the Princess! Her stars lead your eyes to the Andromeda Galaxy — a whole other city of stars so far away it looks like a tiny fuzzy cloud.',
+  },
+  {
+    id: 'perseus', name: 'Perseus', type: 'The hero',
+    starIds: ['mirfak', 'algol'], lines: [['mirfak', 'algol']],
+    extraStars: [
+      { id: 'mirfak', name: 'Mirfak', ra: 3.405, dec: 49.861, ly: 510, color: 0xfff0d8 },
+      { id: 'algol', name: 'Algol', ra: 3.136, dec: 40.956, ly: 93, color: 0xd0e8ff },
+    ],
+    facts: ['Algol blinks like an evil eye!', 'Perseus rescued Andromeda in myth.', 'Home of the Perseid meteor shower.'],
+    story: 'Perseus the Hero holds the head of Medusa in the stars! Watch the star Algol — it dims every few days as a dimmer companion star passes in front. Creepy and cool!',
+  },
+  {
+    id: 'auriga', name: 'Auriga', type: 'The charioteer',
+    starIds: ['capella', 'menkalinan', 'mahasim'], lines: [['capella', 'menkalinan'], ['menkalinan', 'mahasim']],
+    extraStars: [
+      { id: 'menkalinan', name: 'Menkalinan', ra: 5.992, dec: 44.947, ly: 81, color: 0xe8f0ff },
+      { id: 'mahasim', name: 'Mahasim', ra: 5.603, dec: 41.234, ly: 160, color: 0xd8e8ff },
+    ],
+    facts: ['Capella is the 6th brightest star in the sky.', 'Looks like a pentagon shape.', 'A chariot driver from Roman legend.'],
+    story: 'Auriga drives a chariot across the winter sky! Its golden star Capella is actually two giant stars dancing around each other. Can you spot the pentagon shape?',
+  },
+  {
+    id: 'hercules', name: 'Hercules', type: 'The strongman',
+    starIds: ['rasalgethi', 'kornephoros'], lines: [['rasalgethi', 'kornephoros']],
+    extraStars: [
+      { id: 'rasalgethi', name: 'Rasalgethi', ra: 17.244, dec: 14.39, ly: 360, color: 0xff8866 },
+    ],
+    facts: ['Contains the Great Globular Cluster M13.', 'M13 is a ball of hundreds of thousands of stars.', 'Named after the strongest Greek hero.'],
+    story: 'Hercules the Strongman flexes in the summer sky! Hidden inside is the Great Cluster M13 — a snowball of half a million stars packed together. It is one of the prettiest things in the heavens.',
+  },
+  {
+    id: 'ophiuchus', name: 'Ophiuchus', type: 'The serpent bearer',
+    starIds: ['rasalhague', 'sabik'], lines: [['rasalhague', 'sabik']],
+    extraStars: [
+      { id: 'sabik', name: 'Sabik', ra: 17.172, dec: -15.725, ly: 88, color: 0xfff0d8 },
+    ],
+    facts: ['Sometimes called the 13th zodiac constellation.', 'A man holding a serpent — Serpens.', 'Large but faint constellation.'],
+    story: 'Ophiuchus is the Serpent Bearer — a healer wrestling a snake! Astrologers sometimes call it a secret thirteenth zodiac sign. He stands on the Milky Way like a cosmic doctor.',
+  },
+  {
+    id: 'sagittarius', name: 'Sagittarius', type: 'The archer',
+    starIds: ['kaus_australis', 'nunki', 'ascella'], lines: [['kaus_australis', 'nunki'], ['nunki', 'ascella']],
+    extraStars: [
+      { id: 'kaus_australis', name: 'Kaus Australis', ra: 18.403, dec: -34.385, ly: 145, color: 0xd8e8ff },
+      { id: 'nunki', name: 'Nunki', ra: 18.921, dec: -26.297, ly: 228, color: 0xe0ecff },
+      { id: 'ascella', name: 'Ascella', ra: 19.043, dec: -29.88, ly: 89, color: 0xf0f8ff },
+    ],
+    facts: ['Points toward the center of the Milky Way!', 'Looks like a teapot shape.', 'Best seen in summer.'],
+    story: 'Sagittarius is the Archer — but kids call it the Teapot! Steam from the teapot\'s spout is the Milky Way, and if you follow it you are staring toward the monster black hole at the heart of our galaxy!',
+  },
+  {
+    id: 'aquarius', name: 'Aquarius', type: 'The water bearer',
+    starIds: ['sadalsuud', 'sadalmelik'], lines: [['sadalsuud', 'sadalmelik']],
+    extraStars: [
+      { id: 'sadalsuud', name: 'Sadalsuud', ra: 21.526, dec: -5.571, ly: 540, color: 0xfff0d0 },
+      { id: 'sadalmelik', name: 'Sadalmelik', ra: 22.096, dec: -0.32, ly: 760, color: 0xffeecc },
+    ],
+    facts: ['A zodiac constellation.', 'Pours water toward the southern fish.', 'Best in autumn.'],
+    story: 'Aquarius the Water Bearer tips a cosmic jug over the sky! In stories he brings life-giving water to the world. His stars are not super bright, but he is famous in astrology.',
+  },
+  {
+    id: 'pisces', name: 'Pisces', type: 'The fishes',
+    starIds: ['alrescha', 'eta_psc'], lines: [['alrescha', 'eta_psc']],
+    extraStars: [
+      { id: 'alrescha', name: 'Alrescha', ra: 2.034, dec: 2.763, ly: 139, color: 0xe8f0ff },
+      { id: 'eta_psc', name: 'Eta Piscium', ra: 1.524, dec: 15.345, ly: 294, color: 0xfff8e8 },
+    ],
+    facts: ['Two fish tied by a ribbon in myth.', 'A zodiac constellation.', 'Large but hard to see from cities.'],
+    story: 'Pisces is two fish swimming in opposite directions, tied together by a long ribbon! It is a zodiac sign and one of the oldest constellations — swimming through the autumn sky.',
+  },
+  {
+    id: 'aries', name: 'Aries', type: 'The ram',
+    starIds: ['hamal', 'sheratan'], lines: [['hamal', 'sheratan']],
+    extraStars: [
+      { id: 'sheratan', name: 'Sheratan', ra: 1.91, dec: 20.808, ly: 59, color: 0xfff0d8 },
+    ],
+    facts: ['First sign of the zodiac.', 'Hamal is its brightest star.', 'A golden flying ram in Greek myth.'],
+    story: 'Aries the Ram leads the zodiac parade! Its star Hamal marks the horn of a magical ram whose golden fleece was one of the greatest treasures in all of mythology.',
+  },
+  {
+    id: 'cancer', name: 'Cancer', type: 'The crab',
+    starIds: ['altarf', 'acubens'], lines: [['altarf', 'acubens']],
+    extraStars: [
+      { id: 'altarf', name: 'Altarf', ra: 8.721, dec: 9.186, ly: 290, color: 0xff7744 },
+      { id: 'acubens', name: 'Acubens', ra: 8.658, dec: 11.858, ly: 174, color: 0xf0f8ff },
+    ],
+    facts: ['A zodiac constellation.', 'Contains the Beehive Cluster.', 'Sent by Hera to nip Hercules.'],
+    story: 'Cancer the Crab is small and shy — you need dark skies to find it! Inside hides the Beehive Cluster, a buzzing swarm of stars. In myth, this crab pinched the hero Hercules\'s toe!',
+  },
+  {
+    id: 'virgo', name: 'Virgo', type: 'The maiden',
+    starIds: ['spica', 'porrima', 'vindemiatrix'], lines: [['spica', 'porrima'], ['porrima', 'vindemiatrix']],
+    extraStars: [
+      { id: 'porrima', name: 'Porrima', ra: 12.496, dec: -1.449, ly: 38, color: 0xfff8e8 },
+      { id: 'vindemiatrix', name: 'Vindemiatrix', ra: 13.036, dec: 10.959, ly: 102, color: 0xfff0d0 },
+    ],
+    facts: ['Spica is a blazing blue giant.', 'Largest zodiac constellation.', 'Goddess of harvest in myth.'],
+    story: 'Virgo the Maiden holds the bright star Spica — a diamond-blue jewel! She is the goddess of wheat and harvest. Spica rises in spring when flowers bloom on Earth.',
+  },
+  {
+    id: 'libra', name: 'Libra', type: 'The scales',
+    starIds: ['zubenelgenubi', 'zubeneschamali'], lines: [['zubenelgenubi', 'zubeneschamali']],
+    extraStars: [
+      { id: 'zubenelgenubi', name: 'Zubenelgenubi', ra: 14.848, dec: -16.042, ly: 77, color: 0xfff0d8 },
+      { id: 'zubeneschamali', name: 'Zubeneschamali', ra: 15.283, dec: -9.383, ly: 185, color: 0xd8f0ff },
+    ],
+    facts: ['Only zodiac sign that is an object, not a creature.', 'Stars mean "northern claw" in Arabic.', 'Visible in spring and summer.'],
+    story: 'Libra the Scales weighs justice in the sky! Its two brightest stars once belonged to Scorpius\'s claws. Now they balance fairness between right and wrong.',
+  },
+  {
+    id: 'ursa_minor', name: 'Ursa Minor', type: 'Little Dipper',
+    starIds: ['polaris', 'kochab', 'pherkad'], lines: [['polaris', 'kochab'], ['kochab', 'pherkad']],
+    extraStars: [],
+    facts: ['Polaris marks true north.', 'The Little Dipper is smaller than the Big Dipper.', 'Explorers have used it to navigate for centuries.'],
+    story: 'Ursa Minor is the Little Bear — and the Little Dipper! Its tip star Polaris always points north, like a faithful friend guiding travelers home through the darkest nights.',
+  },
+  {
+    id: 'crux', name: 'Crux', type: 'Southern Cross',
+    starIds: ['acrux', 'gacrux', 'imai'], lines: [['acrux', 'gacrux'], ['gacrux', 'imai']],
+    extraStars: [
+      { id: 'imai', name: 'Imai', ra: 12.795, dec: -59.689, ly: 345, color: 0xd0e8ff },
+    ],
+    facts: ['Smallest of the 88 constellations.', 'Only visible from the southern hemisphere.', 'On flags of Australia and New Zealand.'],
+    story: 'Crux — the Southern Cross! Sailors in the southern seas used these four bright stars to find south. It is tiny but famous, shining on flags and in songs across the world.',
+  },
+  {
+    id: 'draco', name: 'Draco', type: 'The dragon',
+    starIds: ['eltanin', 'rastaban', 'altais'], lines: [['eltanin', 'rastaban'], ['rastaban', 'altais']],
+    extraStars: [
+      { id: 'eltanin', name: 'Eltanin', ra: 17.943, dec: 51.489, ly: 148, color: 0xffcc77 },
+      { id: 'rastaban', name: 'Rastaban', ra: 17.507, dec: 52.301, ly: 380, color: 0xfff0d0 },
+      { id: 'altais', name: 'Altais', ra: 19.209, dec: 67.661, ly: 91, color: 0xf0f8ff },
+    ],
+    facts: ['Winds between the Big and Little Dippers.', 'Thuban was the north star 5,000 years ago.', 'A dragon guarding golden apples in myth.'],
+    story: 'Draco the Dragon coils around the north pole like a scaly river! Thousands of years ago, Egyptians used its star Thuban as the north star instead of Polaris.',
+  },
+  {
+    id: 'corona_borealis', name: 'Corona Borealis', type: 'Northern Crown',
+    starIds: ['alphecca', 'nusakan'], lines: [['alphecca', 'nusakan']],
+    extraStars: [
+      { id: 'alphecca', name: 'Alphecca', ra: 15.578, dec: 26.715, ly: 75, color: 0xfff8e8 },
+      { id: 'nusakan', name: 'Nusakan', ra: 15.463, dec: 29.106, ly: 112, color: 0xe8f0ff },
+    ],
+    facts: ['Looks like a small letter C.', 'A crown given to a princess in myth.', 'Best seen in summer evenings.'],
+    story: 'Corona Borealis is the Northern Crown — a delicate arc of jewels! Gods placed it in the sky to honor a princess. It is small, pretty, and easy to miss if you do not know where to look.',
+  },
+  {
+    id: 'cetus', name: 'Cetus', type: 'The sea monster',
+    starIds: ['menkar', 'diphda'], lines: [['menkar', 'diphda']],
+    extraStars: [
+      { id: 'diphda', name: 'Diphda', ra: 0.726, dec: -17.987, ly: 96, color: 0xffaa66 },
+    ],
+    facts: ['A giant whale or sea monster.', 'Sent to eat Andromeda in myth.', 'Visible in autumn.'],
+    story: 'Cetus the Sea Monster lurks in the autumn waters of the sky! In the famous story, this terrible beast was sent to swallow Princess Andromeda — until the hero Perseus rode in on Pegasus to save her.',
+  },
+  {
+    id: 'eridanus', name: 'Eridanus', type: 'The river',
+    starIds: ['achernar', 'cursa'], lines: [['achernar', 'cursa']],
+    extraStars: [
+      { id: 'cursa', name: 'Cursa', ra: 5.131, dec: -5.086, ly: 89, color: 0xd8e8ff },
+    ],
+    facts: ['Longest constellation in the sky!', 'Achernar is the 9th brightest star.', 'The celestial river Eridanus.'],
+    story: 'Eridanus is the longest constellation — a winding river that flows from Orion all the way to the southern star Achernar! It is the path Phaethon fell after losing control of the Sun chariot.',
+  },
+  {
+    id: 'triangulum', name: 'Triangulum', type: 'The triangle',
+    starIds: ['mothallah', 'beta_tri'], lines: [['mothallah', 'beta_tri']],
+    extraStars: [
+      { id: 'mothallah', name: 'Mothallah', ra: 1.884, dec: 29.579, ly: 63, color: 0xfff0d8 },
+      { id: 'beta_tri', name: 'Beta Trianguli', ra: 2.314, dec: 34.987, ly: 127, color: 0xf0f8ff },
+    ],
+    facts: ['Just three stars make the shape!', 'Points toward the Triangulum Galaxy.', 'One of the simplest constellations.'],
+    story: 'Triangulum is the simplest constellation — just a triangle! Inside lies another whole galaxy, the Triangulum Galaxy, nearly as big as our Milky Way but much farther away.',
+  },
+  {
+    id: 'delphinus', name: 'Delphinus', type: 'The dolphin',
+    starIds: ['rotanev', 'sualocin'], lines: [['rotanev', 'sualocin']],
+    extraStars: [
+      { id: 'rotanev', name: 'Rotanev', ra: 20.726, dec: 14.595, ly: 101, color: 0xe8f0ff },
+      { id: 'sualocin', name: 'Sualocin', ra: 20.693, dec: 15.914, ly: 358, color: 0xf0f8ff },
+    ],
+    facts: ['Tiny but easy to spot near Cygnus.', 'Looks exactly like a leaping dolphin.', 'A reward from Poseidon in myth.'],
+    story: 'Delphinus is a tiny dolphin leaping out of the cosmic sea! Sailors loved this little constellation because it really looks like a dolphin — four stars for the body, one for the tail splash.',
+  },
+];

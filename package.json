@@ -1,0 +1,20 @@
+{
+  "name": "flyuniverse",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "keywords": ["space", "kids", "threejs", "education", "astronomy"],
+  "author": "",
+  "license": "MIT",
+  "description": "Retro pixel-art space explorer for kids — planets, constellations, galaxies, and an offline Space Guide.",
+  "dependencies": {
+    "three": "^0.184.0"
+  },
+  "devDependencies": {
+    "vite": "^8.0.16"
+  },
+  "type": "module"
+}
